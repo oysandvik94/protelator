@@ -26,7 +26,9 @@ fun Application.configureRouting() {
                         div(classes = "mb-4") {
                             ul() {
                                 id = "ingredients"
-                                createIngredient()
+                                div {
+                                    createIngredient()
+                                }
                             }
                         }
                     }
@@ -54,6 +56,9 @@ fun Application.configureRouting() {
                 body {
                     div(classes = "mt-2.5 p-2.5 bg-blue-50 rounded") {
                         p { +"Ingredient added: ${protein}g protein, ${grams}g total." }
+                    }
+                    div {
+                        createIngredient()
                     }
                     
                     div {
