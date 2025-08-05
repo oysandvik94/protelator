@@ -1,4 +1,4 @@
-package com.example
+package com.protelator
 
 import io.ktor.server.application.*
 

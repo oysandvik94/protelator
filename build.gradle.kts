@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.ktor)
 }
 
-group = "com.example"
+group = "com.protelator"
 version = "0.0.1"
 
 application {

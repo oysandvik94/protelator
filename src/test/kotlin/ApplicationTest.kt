@@ -1,4 +1,4 @@
-package com.example
+package com.protelator
 
 import io.ktor.client.request.*
 import io.ktor.http.*
