@@ -1,21 +1,11 @@
-# ktor-sample
+# Protelator
 
-This project was created using the [Ktor Project Generator](https://start.ktor.io).
+This is a protein calculator built on:
 
-Here are some useful links to get you started:
+- Ktor
+- HTMX
 
-- [Ktor Documentation](https://ktor.io/docs/home.html)
-- [Ktor GitHub page](https://github.com/ktorio/ktor)
-- The [Ktor Slack chat](https://app.slack.com/client/T09229ZC6/C0A974TJ9). You'll need to [request an invite](https://surveys.jetbrains.com/s3/kotlin-slack-sign-up) to join.
-
-## Features
-
-Here's a list of features included in this project:
-
-| Name                                         | Description                       |
-| ----------------------------------------------|----------------------------------- |
-| [Routing](https://start.ktor.io/p/routing)   | Provides a structured routing DSL |
-| [HTML DSL](https://start.ktor.io/p/html-dsl) | Generates HTML from Kotlin DSL    |
+Wow!
 
 ## Building & Running
 

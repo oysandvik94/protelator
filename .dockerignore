@@ -1,0 +1,46 @@
+# Build outputs
+build/
+.gradle/
+**/build/
+
+# IDE files
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Version control
+.git/
+.gitignore
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Runtime
+.kotlin/
+
+# Docker
+Dockerfile*
+.dockerignore
+
+# Documentation
+README.md
+*.md
+
+# CI/CD
+.github/
+
+# Tests
+**/test/
+**/*Test.kt
+**/*Tests.kt
