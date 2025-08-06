@@ -18,29 +18,34 @@ fun Application.configureRouting() {
                     script(src = "https://unpkg.com/htmx.org@2.0.3") {}
                     script(src = "https://cdn.tailwindcss.com") {}
                 }
-                body(classes = "font-sans max-w-4xl mx-auto p-5") {
-                    h1 { +"Protein calculator" }
+                body(classes = "bg-black text-white font-mono min-h-screen flex flex-col items-center justify-start p-6") {
+                    div(classes = "w-full max-w-2xl space-y-8") {
 
-                    div(classes = "border border-gray-300 p-5 my-5 rounded-lg") {
-                        h2 { +"Protein Calculator" }
-                        div(classes = "mb-4") {
-                            ul() {
+                        div(classes = "border border-gray-700 bg-gray-900 rounded-lg p-6") {
+                            h1(classes = "text-2xl font-semibold text-sky-400 tracking-wide mb-4 uppercase") {
+                                +"Protein Calculator"
+                            }
+                            div(classes = "space-y-2") {
                                 id = "ingredients"
-                                div {
-                                    createIngredient()
+                                createIngredient()
+                            }
+                        }
+
+                        div(classes = "border border-gray-700 bg-gray-900 rounded-lg p-6") {
+                            h2(classes = "text-xl font-semibold text-sky-300 mb-3") { +"Result" }
+                            div() {
+                                id = "result"
+                                p(classes = "bg-green-100 text-green-800 font-semibold rounded px-4 py-2") {
+                                    +"Total Protein: 0g"
+                                }
+                                p(classes = "text-sm text-gray-400 mt-1") {
+                                    +"From 0 ingredient(s)"
                                 }
                             }
                         }
                     }
-                    
-                    div(classes = "border border-gray-300 p-5 my-5 rounded-lg") {
-                        h2 { +"Result" }
-                        div() {
-                            id = "result"
-                            p(classes = "mt-2.5 p-2.5 bg-blue-50 rounded") { +"The result is here" }
-                        }
-                    }
                 }
+
             }
         }
 
@@ -54,25 +59,28 @@ fun Application.configureRouting() {
 
             call.respondHtml {
                 body {
-                    div(classes = "mt-2.5 p-2.5 bg-blue-50 rounded") {
+                    // Visible confirmation message
+                    div(classes = "bg-gray-800 text-gray-200 text-sm rounded px-4 py-2 mb-4") {
                         p { +"Ingredient added: ${protein}g protein, ${grams}g total." }
                     }
+
                     div {
                         createIngredient()
                     }
-                    
+
                     div {
                         id = "result"
                         attributes["hx-swap-oob"] = "innerHTML"
-                        p(classes = "mt-2.5 p-2.5 bg-green-50 rounded font-bold text-green-700") { 
+                        p(classes = "bg-green-100 text-green-800 font-semibold rounded px-4 py-2 text-base") {
                             +"Total Protein: ${totalProtein}g"
                         }
-                        p(classes = "text-sm text-gray-600 mt-1") {
+                        p(classes = "text-sm text-gray-400 mt-1") {
                             +"From ${proteinEntries.size} ingredient(s)"
                         }
                     }
                 }
             }
         }
+
     }
 }
