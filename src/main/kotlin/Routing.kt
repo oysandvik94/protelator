@@ -6,8 +6,10 @@ import io.ktor.server.request.*
 import io.ktor.server.routing.*
 import kotlinx.html.*
 import com.protelator.ui.createIngredient
+import calculate.Ingredient
+import ui.toElement
 
-private val proteinEntries = mutableListOf<Pair<Double, Double>>()
+private val proteinEntries = mutableListOf<Ingredient>()
 
 fun Application.configureRouting() {
     routing {
@@ -54,15 +56,13 @@ fun Application.configureRouting() {
             val protein = parameters["protein"]?.toDoubleOrNull() ?: 0.0
             val grams = parameters["grams"]?.toDoubleOrNull() ?: 0.0
 
-            proteinEntries.add(Pair(protein, grams))
-            val totalProtein = proteinEntries.sumOf { it.first }
+            val ingredient = Ingredient(proteinPer100 = protein, mass = grams)
+            proteinEntries.add(ingredient)
+            val totalProtein = proteinEntries.sumOf { it.totalProtein() }
 
             call.respondHtml {
                 body {
-                    // Visible confirmation message
-                    div(classes = "bg-gray-800 text-gray-200 text-sm rounded px-4 py-2 mb-4") {
-                        p { +"Ingredient added: ${protein}g protein, ${grams}g total." }
-                    }
+                    ingredient.toElement()()
 
                     div {
                         createIngredient()
