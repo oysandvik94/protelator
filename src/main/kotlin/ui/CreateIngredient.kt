@@ -19,6 +19,12 @@ fun DIV.createIngredient() {
                 required = true
                 step = "0.1"
             }
+            input(type = InputType.number, name = "kcal") {
+                classes = setOf("p-2 rounded bg-gray-800 text-white border border-gray-600 w-36")
+                placeholder = "Kcal per 100g"
+                required = false
+                step = "0.1"
+            }
             input(type = InputType.number, name = "grams") {
                 classes = setOf("p-2 rounded bg-gray-800 text-white border border-gray-600 w-36")
                 placeholder = "Total (g)"

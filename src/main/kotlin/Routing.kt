@@ -40,6 +40,9 @@ fun Application.configureRouting() {
                                 p(classes = "bg-green-100 text-green-800 font-semibold rounded px-4 py-2") {
                                     +"Total Protein: 0g"
                                 }
+                                p(classes = "bg-blue-100 text-blue-800 font-semibold rounded px-4 py-2 mt-2") {
+                                    +"Total Kcal: 0"
+                                }
                                 p(classes = "text-sm text-gray-400 mt-1") {
                                     +"From 0 ingredient(s)"
                                 }
@@ -54,11 +57,13 @@ fun Application.configureRouting() {
         post("/add-item") {
             val parameters = call.receiveParameters()
             val protein = parameters["protein"]?.toDoubleOrNull() ?: 0.0
+            val kcal = parameters["kcal"]?.toDoubleOrNull() ?: 0.0
             val grams = parameters["grams"]?.toDoubleOrNull() ?: 0.0
 
-            val ingredient = Ingredient(proteinPer100 = protein, mass = grams)
+            val ingredient = Ingredient(proteinPer100 = protein, mass = grams, kcalPer100 = kcal)
             proteinEntries.add(ingredient)
             val totalProtein = proteinEntries.sumOf { it.totalProtein() }
+            val totalKcal = proteinEntries.sumOf { it.totalKcal() }
 
             call.respondHtml {
                 body {
@@ -73,6 +78,9 @@ fun Application.configureRouting() {
                         attributes["hx-swap-oob"] = "innerHTML"
                         p(classes = "bg-green-100 text-green-800 font-semibold rounded px-4 py-2 text-base") {
                             +"Total Protein: ${totalProtein}g"
+                        }
+                        p(classes = "bg-blue-100 text-blue-800 font-semibold rounded px-4 py-2 text-base mt-2") {
+                            +"Total Kcal: ${totalKcal}"
                         }
                         p(classes = "text-sm text-gray-400 mt-1") {
                             +"From ${proteinEntries.size} ingredient(s)"
